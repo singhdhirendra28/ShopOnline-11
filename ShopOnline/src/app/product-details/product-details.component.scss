@@ -1,0 +1,90 @@
+@import '../styles/base/color.scss';
+.prod-wrapper{
+    padding-top: 130px;
+    text-align: center;
+}
+.prod-image{
+    width: 50%;
+}
+.prod-detail{
+    text-align: center;
+    .brand{
+        color: #656363;
+        font-size: 19px;    
+    }
+    .title{
+        color: #000;
+        font-family: serif;    
+        font-size: 37px;
+        padding:15px 0;
+    }
+    .price{
+        color: #939393;
+        font-size: 24px;
+        font-family: serif;
+        padding-bottom: 10px;
+    }
+    .desc{
+        color: #656363;
+        font-size: 18px;
+    }
+    .offer{
+        color:$color-indianred;
+        font-size: 15px;
+    }
+    .divider{
+        margin:30px 0;
+    }
+}
+.block{
+    display: flex;
+    justify-content: center;
+    
+    .qty{
+        background-color: #ECECEC;
+        width: 18%;        
+        padding-top: 18px;        
+    }
+    a:hover{
+        color:#000;
+        text-decoration: none;
+    }
+    .plus{        
+        background-color: #CCCBCC;
+        color: #000;
+        cursor: pointer;
+        height: 32px;
+        margin-left: 2px;        
+        text-decoration: none;
+        width: 30px;           
+    }
+    .minus{        
+        background-color: #CCCBCC;        
+        cursor: pointer;
+        margin: 2px 0 0 2px;
+        padding-top: 2px;
+        text-decoration: none;
+        a:hover{
+            color:#000;            
+        }
+    }
+    &__update-qty{
+        display: flex;
+        flex-direction: column;
+    }
+    .add-to{
+        background-color: #000;   
+        cursor: pointer;
+        font-size: 15px;
+        font-family: sans-serif;   
+        margin-left: 15px;  
+        padding: 19px 25px;
+        a{
+            color:#fff;
+        }
+    }
+}
+.added{
+    color:#37550E;
+    font-weight: bold;
+}

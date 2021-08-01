@@ -1,0 +1,34 @@
+<div *ngIf="product" class="prod-wrapper container">
+  <div class="row">
+    <div class="col-md-8">
+      <img src="/assets/images/{{product.ImageName}}" class="prod-image" alt="{{product.ProductName}}" />
+    </div>
+    <div class="col-md-4">
+      <div class="prod-detail">
+      <!-- <div class="brand">{{product.brand}}</div> -->
+      <h2 class="title">{{product.ProductName}}</h2>
+      <div class="price">${{product.Price |  number : '1.2-2'}}</div>
+      <!-- <div class="desc">{{product.description}}</div> -->
+      <div class="title offer" *ngIf="product?.Promotion?.definition">In Offer - {{product.Promotion.definition}}</div>      
+      <hr class="divider">    
+      <div class="block">
+        <div class="qty">
+          <span>{{product.AvailableQty}}</span>
+        </div>
+        <div class="block__update-qty">
+          <a class="plus" (click)="increaseQuantity(product)"><span>+</span>
+          </a>
+          <a class="minus" (click)="decreaseQuantity(product)"><span>-</span></a>
+        </div>
+        <div (click)="addToCart(product)" class="add-to">
+          <a >ADD TO CART</a>          
+        </div>
+        
+      </div>  
+      <div class="added" *ngIf="isItemAddedToCart">
+        <span>Item added to cart</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

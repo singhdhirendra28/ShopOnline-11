@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreLegend.Models;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace CoreLegend.EF
 {
-    public class EmployeeDataContext:DbContext
+    public class OnlineDataContext : DbContext
     {
-        public EmployeeDataContext(DbContextOptions<EmployeeDataContext> options) : base(options) { }
+        public OnlineDataContext(DbContextOptions<OnlineDataContext> options) : base(options) { }
 
-        public DbSet<Models.Employee> Employee { get; set; }
-
-            //protected override void OnConfiguring(DbContextOptionsBuilder options)
-            //=> options.UseSqlite(@"DESKTOP-3OM620D\SQLEXPRESS; Database = HumanResource; Trusted_Connection = True;");
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<PromotionProduct> PromotionProduct { get; set; }
+        public DbSet<Promotion> Promotion { get; set; }
     }
+
 }

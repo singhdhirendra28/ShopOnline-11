@@ -1,0 +1,65 @@
+IF db_id('OnlineOrder1') IS NULL 
+    CREATE DATABASE OnlineOrder1
+
+GO
+Use OnlineOrder1
+
+CREATE TABLE Product(
+	ProductId int not null,
+	ProductName varchar(100) not NULL,
+	Price decimal not NULL,
+	AvailableQty [int] not NULL,
+	ImageName varchar(100),
+	Constraint pk_Product_ProductId primary key(ProductId)
+)
+
+Create table Cart
+(
+	Id int not null Identity(1,1),
+	CustomerId bigint,
+	ProductId int not NULL,
+	SelectedQty int not NULL
+)
+
+----------------------
+
+INSERT INTO dbo.[Product] VALUES(1000,'Victoria Bitter',21.49,999,'1000.jpg')
+INSERT INTO dbo.[Product] VALUES(1001,'Crown Lager ',22.99,999,'1001.jpg')
+INSERT INTO dbo.[Product] VALUES(1002,'Coopers ',20.49,999,'1002.jpg')
+INSERT INTO dbo.[Product] VALUES(1003,'Tooheys Extra Dry  ',19.99,999,'1003.jpg')
+
+INSERT INTO dbo.[Product]  VALUES(1004,'Jacob''s Creek Classic Sauvignon Blanc',7.95,999,'1004.jpg')
+INSERT INTO dbo.[Product]  VALUES(1005,'Tread Softly Pinot Noir',13.60,999,'1005.jpg')
+INSERT INTO dbo.[Product]  VALUES(1006,'Coopers Original Pale Ale Bottle',4.69,999,'1006.jpg')
+
+
+CREATE TABLE Promotion(
+	PromoId int not null identity(1,1),
+	Name varchar(100) not null,
+	Definition varchar(100) not null,
+	Level varchar(20) not null, --Product,Trolley
+	Type varchar(20) not null, --PriceDiscount,PercentDiscount,MultiBuyDiscount,SpentAndSave(spend $50 and get $10 off)
+	CalculateIn varchar(20) not null, -- DollarAmt,Percent,Quantity
+	PromoDiscount varchar(20) not null,
+	Limit varchar(20),
+	Constraint pk_Promotion_PromoId primary key(PromoId)
+)
+
+INSERT INTO [Promotion]([Name],[Definition],[Level],[Type],[CalculateIn],[PromoDiscount],[Limit]) VALUES('Current month special on VB','$2.00 off','Product','PriceDiscount','DollarAmt','2','0')
+INSERT INTO [Promotion]([Name],[Definition],[Level],[Type],[CalculateIn],[PromoDiscount],[Limit]) VALUES('Current month special on PN','5% off','Product','PercentDiscount','Percent','10','0')
+INSERT INTO [Promotion]([Name],[Definition],[Level],[Type],[CalculateIn],[PromoDiscount],[Limit]) VALUES('BOGOF on Coopers','Buy one and get one free','Trolley','MultiBuyDiscount','Quantity','1','0')
+INSERT INTO [Promotion]([Name],[Definition],[Level],[Type],[CalculateIn],[PromoDiscount],[Limit]) VALUES('Spend and save','spend $50 and get $10 off','Trolley','SpendAndSave','PriceDiscount','10','50')
+
+Create Table PromotionProduct(
+	Id int not null identity(1,1),
+	ProductId int not null ,
+	PromoId int not null,
+	IsOverride bit not null,
+	OverrideValue varchar(10)
+)
+
+----------------------
+
+INSERT INTO [PromotionProduct]([ProductId],[PromoId],[IsOverride],[OverrideValue]) VALUES (1000,1,0,0)
+INSERT INTO [PromotionProduct]([ProductId],[PromoId],[IsOverride],[OverrideValue]) VALUES (1002,2,0,0)
+INSERT INTO [PromotionProduct]([ProductId],[PromoId],[IsOverride],[OverrideValue]) VALUES (1003,3,0,0)

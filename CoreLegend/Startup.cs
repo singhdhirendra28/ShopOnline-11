@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using CoreLegend.BusinessAccessLayer;
+using CoreLegend.Controllers;
 using CoreLegend.EF;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,16 +25,26 @@ namespace CoreLegend
         }
 
         public IConfiguration Configuration { get; }
+        public IContainer ApplicationContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            //var connection = @"Data Source=DESKTOP-3OM620D\SQLEXPRESS;Initial Catalog=HumanResource;Integrated Security=True;MultipleActiveResultSets=True";
+        public IServiceProvider ConfigureServices(IServiceCollection services)
+        {            
+            services.AddDbContext<OnlineDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            //Add the CORS for localhost
+            services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+            }));
 
-            //var connection = @"Server =DESKTOP-3OM620D\SQLEXPRESS; Database = HumanResource; Trusted_Connection = True;";            
-            //services.AddDbContext<EmployeeDataContext>(options => options.UseSqlServer(connection));
-            services.AddDbContext<EmployeeDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            services.AddMvc();
+            //services.AddMvc();            
+            services.AddMvc().AddControllersAsServices();
+            var builder1 = new ContainerBuilder();
+            builder1.Populate(services);
+            builder1.RegisterType<TrolleyController>().PropertiesAutowired();
+
+            ApplicationContainer = builder1.Build();
+            return new AutofacServiceProvider(this.ApplicationContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +54,8 @@ namespace CoreLegend
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
+            app.UseCors("ApiCorsPolicy");
             app.UseMvc();
         }
     }

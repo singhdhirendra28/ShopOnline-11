@@ -1,0 +1,78 @@
+@import '../styles/base/color.scss';
+
+.container-holder{
+    margin-left: 200px;
+}
+.category-banner{    
+    background: url('/assets/images/plates-header-0.JPG');
+    background-size: cover;
+    background-repeat: repeat-x;
+    height: 400px;
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+.product-tile-wrapper{
+    margin-top: 50px;
+    img{        
+        height: 210px;              
+    }
+
+}
+.prod-desc{    
+    font-size: 15px;    
+    margin: 20px auto 30px;
+    text-align: center;    
+    
+    &__content{
+        font: 16px Arial, sans-serif;
+        display: inherit;        
+    }
+    &__title{
+        font-weight: bold;
+        padding: 12px 0;
+        text-transform: uppercase;
+    }
+}
+.add-to{
+    background-color: #000;   
+    cursor: pointer;
+    font-size: 15px;
+    font-family: sans-serif;     
+    height: 50px;      
+    margin: 0 55px;
+    padding: 15px 25px;    
+    position: absolute;
+    top: 60px;
+    text-align: center;
+    width: 60%;    
+    
+    a{
+        cursor: pointer;
+        color:#fff;
+    }
+}
+.add-btn{
+    background-color:#656363;    
+}
+.view{    
+    top: 150px;   
+}
+
+.prod-tile-one{
+    font: 15px bold sans-serif;
+}
+.prod-image-two{
+    opacity: .4;
+}
+.added{
+    color:#37550E;
+}
+.tile{
+    text-align: center;
+    background-color: gainsboro;
+    margin: 10px 12px 0 0;
+}
+.color{
+    color:$color-indianred;
+}

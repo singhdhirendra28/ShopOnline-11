@@ -1,0 +1,29 @@
+<div>
+  <div class="category-banner">
+  </div>
+  <div class="product-tile-wrapper">
+    <div class="container container-holder">
+      <div class="row">
+        <div class="col-md-3 tile" *ngFor="let product of productList;let index = index;">          
+            <a id="{{product.ProductId}}-overlay-a" routerLink="/product/{{product.ProductId}}" >
+              <img src="../assets/images/{{product.ImageName}}" alt="product" /></a>
+          <!-- Overview product tile-START -->
+            <div class="prod-tile-one" id="{{product.ProductId}}-overlay-d">
+            <div class="add-t">
+              <a routerLink="/product/{{product.ProductId}}" class="color" alt="product.title">VIEW DETAILS</a>
+            </div>            
+          </div>
+          <!-- Overview product tile-END -->
+
+          <!-- Product Description - START -->
+          <div class="prod-desc">            
+            <span class="prod-desc__content prod-desc__title">{{product.ProductName}}</span>
+            <span class="prod-desc__content">${{product.Price |  number : '1.2-2'}}</span>            
+            <span class="prod-desc__content color" *ngIf="product?.Promotion?.definition">In Offer - {{product.Promotion.definition}}</span>
+          </div>
+          <!-- Product Description - END -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

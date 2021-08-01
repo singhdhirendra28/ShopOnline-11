@@ -1,0 +1,35 @@
+<div class="holder">
+  <div class="logo">
+    <a routerLink="">
+      <img src="/assets/images/logo.png" width="130" alt="hero" />
+    </a>
+  </div>
+
+  <div class="wrapper">
+      <!-- Menu- START -->
+    <ul class="nav navbar-nav">
+      <li class="nav-link">
+        <a routerLink="">HOME</a>
+      </li>
+      <li class="nav-link">        
+        <a routerLink="sm/shop/plates">PRODUCT LISTER</a>
+      </li>
+      <li class="nav-link">
+        <a routerLink="sm/journal">JOURNAL</a>
+      </li>
+      <li class="nav-link">
+        <a routerLink="sm/about">ABOUT</a>
+      </li>
+    </ul>
+    <!-- Menu- END -->
+
+    <div class="cart">
+      <a routerLink="/sm/cart">MY CART ({{cartItemCount}})</a>
+        <!-- Cart Preview (In mobile it will be hidden)- START -->
+      <div class="preview" *ngIf="!breakpointsService.isXS">
+        <shop-cart-preview></shop-cart-preview>
+      </div>
+      <!-- Cart Preview (In mobile it will be hidden)- END -->
+    </div>
+  </div>
+</div>

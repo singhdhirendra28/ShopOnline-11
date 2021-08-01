@@ -1,0 +1,101 @@
+<div class="cart-wrapper">
+  <h3 class="cart-wrapper__title">Shopping Cart</h3>
+  <div class="container bg">
+    <!-- Column-START -->
+    <div class="row table" *ngIf="!breakpointsService.isXS">
+      <div class="col-md-7 col">
+        <span class="col-title">PRODUCT</span>
+      </div>
+      <div class="col-md-2">
+        <span class="col-title">QUANTITY</span>
+      </div>
+      <div class="col-md-2">
+        <span class="col-title">TOTAL</span>
+      </div>
+      <div class="col-md-1">
+        <span class="col-title">ACTION</span>
+      </div>
+    </div>
+    <!-- Column-END -->
+
+    <!-- Data Column-START -->
+    <div *ngFor="let cartItem of myCartView?.TrolleyItems;let index = index;">
+      <div class="row">
+        <div class="col-md-12">
+          <hr class="devider">
+        </div>
+        <hr>
+      </div>
+      <div class="row item-lst">
+        <div class="col-md-5">
+          <a routerLink="/product/{{cartItem.ProductId}}" class="prod-detail">
+            <div routerLink="/product/{{cartItem.ProductId}}" class="prod-detail"></div>
+            <img class="prod-img" src="../assets/images/{{cartItem.ImageName}}" alt="product" />
+          </a>
+          <div class="prod-desc">           
+              <a routerLink="/product/{{cartItem.ProductId}}"
+              class="prod-desc__brand prod-desc__title">{{cartItem.ProductName}}</a>          
+          </div>
+        </div>
+        <div class="col-md-2 block">
+          <div class="price offer" *ngIf="cartItem?.Promotion?.definition; else undiscountedPrice">In Offer - {{cartItem.Promotion.definition}}<br>
+            <span class="price" >${{cartItem.Price |  number : '1.2-2'}}</span>
+          </div>
+          <ng-template #undiscountedPrice> <span class="price" >${{cartItem.Price |  number : '1.2-2'}}</span></ng-template>
+        </div>
+        <div class="col-md-2 block">
+          <div class="qty">
+            <span>{{cartItem.SelectedQty}}</span>
+          </div>
+          <div class="block__update-qty">
+            <a class="plus" (click)="increaseQuantity(cartItem)"><span>+</span>
+            </a>
+            <a class="minus" (click)="decreaseQuantity(cartItem)"><span>-</span></a>
+          </div>
+        </div>
+        <div class="col-md-2 margin-top-30" *ngIf="!breakpointsService.isXS">
+          <span class="price">${{cartItem.SalePrice |  number : '1.2-2'}}</span>
+        </div>
+        <div class="col-md-1 close margin-top-30" *ngIf="!breakpointsService.isXS" (click)="deleteItem(cartItem)"><span
+            class="icon-cross">X</span>
+        </div>
+
+      </div>
+      <div class="row mob-cart" *ngIf="breakpointsService.isXS">
+        <div class="col-xs-12 holder">
+          <span class="price">${{cartItem.SalePrice | number : '1.2-2'}}</span>
+          <div class="remove" (click)="deleteItem(cartItem)"><span class="icon-cross">X</span>
+          </div>
+        </div>
+      </div>
+      <!-- Data Column-END -->
+    </div>
+      <div class="row">
+        <div class="col-md-12">
+          <hr class="devider">
+        </div>
+        <hr>
+      </div>
+      <!-- Cart Summary section-START -->
+      <div class="row">
+        <div class="offset-md-6"></div>
+        <div class="col-md-6">
+          <div>
+            <ul class="price-overview">
+              <li>
+                <span class="sub-text">CART OVERVIEW</span>
+              </li>
+              <li class="price">
+                <span class="sub-text offer">Total Discount</span>
+                <span class="sub-value offer">${{myCartView.TotalDiscount |  number : '1.2-2'}}</span>
+              </li>     
+              <li class="price">
+                <span class="sub-text">SUBTOTAL</span>
+                <span class="sub-value">${{myCartView.Subtotal |  number : '1.2-2'}}</span>
+              </li>                      
+            </ul>
+          </div>
+        </div>
+      </div>  
+      <!-- Cart Summary section-END -->  
+  </div>

@@ -1,0 +1,7 @@
+.fa{
+    font-family: 'FontAwesome' !important;
+  }
+  .icon-cross {
+    @extend .fa;
+    @extend .fa-times;
+  }  

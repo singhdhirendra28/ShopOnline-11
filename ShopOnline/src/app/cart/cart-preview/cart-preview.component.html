@@ -1,0 +1,48 @@
+<div class="container preview-wrapper">
+  <div class="row" *ngFor="let cartItem of myCartView?.TrolleyItems;let index = index;">
+    <div class="col-md-3">
+      <a routerLink="/product/{{cartItem.ProductId}}"><img class="prod-img"
+          src="../assets/images/{{cartItem.ImageName}}"></a>
+    </div>
+    <div class="col-md-9">
+      <div class="prod-desc">
+        <div class="title-wrapper">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-9 gutter">
+                <a routerLink="/product/{{cartItem.ProductId}}"
+                  class="brand title">{{cartItem.ProductName}}</a>
+              </div>
+              <div class="col-md-3">
+                <a (click)="deleteItem(cartItem)" class="close">x</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="price"> {{cartItem.SelectedQty}} X </span>        
+        <span class="price">${{cartItem.SalePrice |  number : '1.2-2'}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="myCartView?.Payable">
+    <div class="col-md-12">
+      <hr class="devider">
+    </div>
+    <div class="col-md-12">
+      <span class="total-txt"> TOTAL</span>
+      <span class="total-val">${{myCartView?.Payable |  number : '1.2-2'}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="add-to view-cart">
+        <a routerLink="sm/cart">VIEW CART</a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="add-to checkout">
+        <a>CHECKOUT</a>
+      </div>
+    </div>
+  </div>
+</div>
