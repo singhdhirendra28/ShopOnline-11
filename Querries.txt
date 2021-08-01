@@ -1,0 +1,68 @@
+Create database OnlineOrder
+
+Use OnlineOrder
+go
+
+CREATE TABLE Product(
+	[ProductId] int not null identity(1000,1),
+	[ProductName] varchar(100) not NULL,
+	[Price] decimal not NULL,
+	[AvailableQty] [int] not NULL,
+	Constraint pk_Product_ProductId primary key([ProductId])
+)
+
+
+CREATE TABLE Promotion(
+	PromoId int not null identity(1,1),
+	Name varchar(100) not null,
+	Definition varchar(100) not null,
+	PromoTypeId int not null -- SalePrice,FreeQuantity,TrolleyDiscount	
+	Constraint pk_Promotion_PromoId primary key(PromoId),
+	Constraint fk_Promotion_PromoTypeId foreign key (PromoTypeId) references PromoType(PromoTypeId)
+
+)
+
+Create Table PromoType(
+	PromoTypeId int not null identity(1,1),
+	Type varchar(20) not null,
+	PromoDiscount varchar(20) not null,
+	Constraint pk_PromoType_TypeId primary key(PromoTypeId)
+)
+
+Create Table PromotionProduct(
+	[ProductId] int not null,
+	PromoId int not null,
+	IsOverride bit not null,
+	OverrideValue varchar(10)
+)
+
+
+----------------------
+
+INSERT INTO [Product] ([ProductName],[Price],[AvailableQty]) VALUES('Victoria Bitter',21.49,999)
+INSERT INTO [Product] ([ProductName],[Price],[AvailableQty]) VALUES('Crown Lager ',22.99,999)
+INSERT INTO [Product] ([ProductName],[Price],[AvailableQty]) VALUES('Coopers ',20.49,999)
+INSERT INTO [Product] ([ProductName],[Price],[AvailableQty]) VALUES('Tooheys Extra Dry  ',19.99,999)
+
+INSERT INTO [Product] ([ProductName],[Price],[AvailableQty]) VALUES('Jacob''s Creek Classic Sauvignon Blanc',7.95,999)
+INSERT INTO [Product] ([ProductName],[Price],[AvailableQty]) VALUES('Tread Softly Pinot Noir',13.60,999)
+INSERT INTO [Product] ([ProductName],[Price],[AvailableQty]) VALUES('Coopers Original Pale
+Ale Bottle',4.69,999)
+
+
+----------------------
+
+INSERT INTO [PromoType]([Type],[PromoDiscount]) VALUES('Product','5')
+INSERT INTO [PromoType]([Type],[PromoDiscount]) VALUES('TrolleyBuyGetProduct','1')
+INSERT INTO [PromoType]([Type],[PromoDiscount]) VALUES('TrolleyDiscount','50')
+
+----------------------
+
+INSERT INTO [Promotion]([Name],[Definition],[PromoTypeId]) VALUES('Current month special on VB','$2.00 off',1)
+INSERT INTO [Promotion]([Name],[Definition],[PromoTypeId]) VALUES('BOGOF on Coopers','Buy one and get one free',2)
+INSERT INTO [Promotion]([Name],[Definition],[PromoTypeId]) VALUES('Spend and save','Spend $50 and $5 off the tota',3)
+
+--------------------
+
+INSERT INTO [PromotionProduct]([ProductId],[PromoId],[IsOverride],[OverrideValue]) VALUES (1000,1,0,0)
+INSERT INTO [PromotionProduct]([ProductId],[PromoId],[IsOverride],[OverrideValue]) VALUES (1002,2,0,0)
