@@ -8,7 +8,7 @@ import {
   } from './breakpoints.service';
   
   import {
-    WindowService
+    WindowServiceViewPort
   } from '../window.service';
   
   import {
@@ -16,23 +16,23 @@ import {
   } from 'rxjs';
   
   describe('Service: BreakpointsService', () => {
-    let _mockWindowService: WindowService;
+    let _mockWindowService: WindowServiceViewPort;
     let _breakPointService: BreakpointsService;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-          providers:[WindowService]
+          providers:[WindowServiceViewPort]
         })
         .compileComponents();
       }));
     
   
     beforeEach(() => {
-      _mockWindowService = <WindowService>{};
+      _mockWindowService = <WindowServiceViewPort>{};
     });
   
     afterEach(() => {
-      _mockWindowService = null;
+      _mockWindowService = <WindowServiceViewPort>{};
     });
   
     it('should determine the breakpoints correctly', () => {

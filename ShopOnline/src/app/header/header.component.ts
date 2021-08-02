@@ -14,9 +14,6 @@ export class HeaderComponent implements OnInit {
   constructor(private cartService: CartService, public breakpointsService: BreakpointsService) { }
 
   ngOnInit() {
-    //Get the cart data on Init.
-    //this.cartService.getCart().subscribe();
-    //Refresh cart data at quantity update
     this.cartService.cartObservable
       .subscribe((res: MyCartView) => {
         if (res) {

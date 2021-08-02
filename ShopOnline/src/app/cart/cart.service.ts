@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
-import { of } from "rxjs/internal/observable/of";
 import { AddToCart, CartItem, MyCartView } from "./cart.model";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";

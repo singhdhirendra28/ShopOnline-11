@@ -1,36 +1,37 @@
-import { TestBed, async } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BreakpointsService } from './base/breakpoints/breakpoints.service';
-import { WindowService } from './base/window.service';
+import { WindowServiceViewPort } from './base/window.service';
 import { CartPreviewComponent } from './cart/cart-preview/cart-preview.component';
 import { CartService } from './cart/cart.service';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ShopComponent } from './shop.component';
 
-describe('AppComponent', () => {
-  
+describe('ShopComponent', () => {
+  let component: ShopComponent;
+  let fixture: ComponentFixture<ShopComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,HttpClientTestingModule
       ],
-      declarations: [
-        ShopComponent,HeaderComponent,FooterComponent,CartPreviewComponent
+      declarations: [        
       ],
-      providers:[CartService,BreakpointsService,WindowService]
+      providers: []
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(ShopComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ShopComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it(`should have as title 'shopping-mission'`, () => {
-    const fixture = TestBed.createComponent(ShopComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('shopping-mission');
-  });  
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
 });

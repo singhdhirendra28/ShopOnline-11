@@ -223,23 +223,60 @@ namespace CoreLegend.Models
             return count;
         }
     }
+    /// <summary>
+    /// Calculation unit
+    /// </summary>
     public static class PromoCalculateUnit
     {
+        /// <summary>
+        /// <summary>DollarAmt
+        /// 
+        /// </summary>
         public static string DollarAmt = "DollarAmt";
+        /// <summary>
+        /// Percent
+        /// </summary>
         public static string Percent = "Percent";
+        /// <summary>
+        /// Quantity
+        /// </summary>
         public static string Quantity = "Quantity";
     }
 
+    /// <summary>
+    /// PromoType
+    /// </summary>
     public static class PromoType
     {
+        /// <summary>
+        /// PriceDiscount
+        /// </summary>
         public static string PriceDiscount = "PriceDiscount";
+        /// <summary>
+        /// PercentDiscount
+        /// </summary>
         public static string PercentDiscount = "PercentDiscount";
+        /// <summary>
+        /// MultiBuyDiscount
+        /// </summary>
         public static string MultiBuyDiscount = "MultiBuyDiscount";
+        /// <summary>
+        /// SpentAndSave
+        /// </summary>
         public static string SpentAndSave = "SpentAndSave";        
     }
+    /// <summary>
+    /// PromoLevel
+    /// </summary>
     public static class PromoLevel
     {
+        /// <summary>
+        /// OnProduct
+        /// </summary>
         public static string OnProduct = "Product";
+        /// <summary>
+        /// Trolley
+        /// </summary>
         public static string OnTrolley = "Trolley";
         
     }

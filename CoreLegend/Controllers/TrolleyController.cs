@@ -162,6 +162,11 @@ namespace CoreLegend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get product details
+        /// </summary>
+        /// <param name="prodId"></param>
+        /// <returns></returns>
         [HttpGet("GetProductDetail/{prodId}")]
         public IActionResult GetProductDetail(int prodId)
         {

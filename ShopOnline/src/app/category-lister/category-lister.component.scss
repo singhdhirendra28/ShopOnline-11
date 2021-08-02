@@ -1,7 +1,9 @@
 @import '../styles/base/color.scss';
 
-.container-holder{
-    margin-left: 200px;
+.container-holder{    
+    @media (min-width: 768px) {
+        margin-left: 200px;
+    }
 }
 .category-banner{    
     background: url('/assets/images/plates-header-0.JPG');

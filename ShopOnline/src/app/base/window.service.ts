@@ -17,7 +17,7 @@ function getWindow(): any {
 }
 
 @Injectable()
-export class WindowService {
+export class WindowServiceViewPort {
   private _windowSize: any;
 
   public window: any;
@@ -27,7 +27,7 @@ export class WindowService {
   public scrollObservable: any;
   public scrollLock: boolean;
   private isServer: boolean;
-  deviceSize:any = {
+  standardDeviceSize:any = {
     desktop: {
       width: 1200,
       height: 600
@@ -46,15 +46,15 @@ export class WindowService {
 
     // assign window
     this.scrollLock = false;
-    this._windowSize = this.getWindowSize();
+    this._windowSize = this.getTheWindowSize();
     this.height = this._windowSize.height;
     this.width = this._windowSize.width;
-    this.windowObservable = new BehaviorSubject(this.getWindowSize());
+    this.windowObservable = new BehaviorSubject(this.getTheWindowSize());
 
     if (!this.isServer) {
       observableFromEvent(window, 'resize', { passive: true }).pipe(
-        map(this.getWindowSize),
-        debounceTime(300))
+        map(this.getTheWindowSize),
+        debounceTime(320))
         .subscribe(this.windowObservable);
       this.window = getWindow();
       this.scrollObservable = observableFromEvent(document, 'scroll', { passive: true });
@@ -65,10 +65,10 @@ export class WindowService {
     this.scrollLock = true;
   }
 
-  private getWindowSize() {
+  private getTheWindowSize() {
     if (this.isServer) {
       const req  = this.injector.get('REQUEST');
-      const window = this.deviceSize[req.device.type];
+      const window = this.standardDeviceSize[req.device.type];
       window.innerWidth = window.width;
       this.window = window;
       return this.window;

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AddToCart, MyCartView, UpdateQuantity } from '../cart/cart.model';
+import { AddToCart, UpdateQuantity } from '../cart/cart.model';
 import { CartService } from '../cart/cart.service';
 import { Product } from '../category-lister/product.model';
 

@@ -13,7 +13,7 @@ import { CartModule } from './cart/cart.module';
 import { CartService } from './cart/cart.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { BreakpointsService } from './base/breakpoints/breakpoints.service';
-import { WindowService } from './base/window.service';
+import { WindowServiceViewPort } from './base/window.service';
 import { AboutComponent } from './about/about.component';
 import { JournalComponent } from './journal/journal.component';
 
@@ -33,7 +33,7 @@ import { JournalComponent } from './journal/journal.component';
     RouterModule.forRoot(ROUTES, {onSameUrlNavigation: 'reload' }),
     CartModule
   ],
-  providers: [ProductService,CartService,BreakpointsService,WindowService],
+  providers: [ProductService,CartService,BreakpointsService,WindowServiceViewPort],
   bootstrap: [ShopComponent]
 })
 export class ShopModule { }

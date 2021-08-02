@@ -1,3 +1,5 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -16,7 +18,7 @@ describe('CartPreviewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CartPreviewComponent ],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule,HttpClientTestingModule],
       providers:[CartService,{provide: ActivatedRoute, useValue: fakeActivatedRoute}]
     })
     .compileComponents();

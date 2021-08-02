@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace CoreLegend.Helper
 {
+    /// <summary>
+    /// CommonStatusHelper
+    /// </summary>
     public static class CommonStatusHelper
     {
         private static Dictionary<string, string> statusCodeAndDescription { get; set; }
@@ -37,6 +40,11 @@ namespace CoreLegend.Helper
             #endregion
 
         }
+        /// <summary>
+        /// ServiceStatusDesctiption
+        /// </summary>
+        /// <param name="statusCode"></param>
+        /// <returns></returns>
         public static string ServiceStatusDesctiption(string statusCode)
         {
             string statusDesc = string.Empty;
@@ -47,7 +55,11 @@ namespace CoreLegend.Helper
         }
 
 
-
+        /// <summary>
+        /// GetHTTPStatusCode
+        /// </summary>
+        /// <param name="oneClickStatusCode"></param>
+        /// <returns></returns>
         public static System.Net.HttpStatusCode GetHTTPStatusCode(string oneClickStatusCode)
         {
             System.Net.HttpStatusCode statusCode = System.Net.HttpStatusCode.OK;
@@ -57,19 +69,49 @@ namespace CoreLegend.Helper
         }
     }
 
+    /// <summary>
+    /// ErrorMappingCode
+    /// </summary>
     public sealed class ErrorMappingCode
     {
+        /// <summary>
+        /// Success
+        /// </summary>
         public const string Success = "200";
+        /// <summary>
+        /// UnknownError
+        /// </summary>
         public const string UnknownError = "1000";
+        /// <summary>
+        /// InvalidRequestInput
+        /// </summary>
         public const string InvalidRequestInput = "1001";
+        /// <summary>
+        /// CanNotFullfillOrder
+        /// </summary>
         public const string CanNotFullfillOrder = "1002";
+        /// <summary>
+        /// CartIsEmpty
+        /// </summary>
         public const string CartIsEmpty = "1003";
+        /// <summary>
+        /// ProductNotAvailable
+        /// </summary>
         public const string ProductNotAvailable = "1004";
 
-    }  
+    }
+    /// <summary>
+    /// ApiResponse
+    /// </summary>
     public class ApiResponse
     {
+        /// <summary>
+        /// StatusCode
+        /// </summary>
         public string StatusCode { get; set; }
+        /// <summary>
+        /// Response
+        /// </summary>
         public object Response { get; set; }
         public ApiResponse(string code,object response)
         {

@@ -3,7 +3,7 @@ import {
   } from '@angular/core';
   
   import {
-    WindowService
+    WindowServiceViewPort
   } from '../window.service';
   
   @Injectable()
@@ -26,7 +26,7 @@ import {
       return format === 'xs' || format === 'sm';
     }
   
-    constructor(public windowRef: WindowService) {
+    constructor(public windowRef: WindowServiceViewPort) {
       this.windowService = windowRef;
       this.windowSize = {
         width: windowRef.width,
